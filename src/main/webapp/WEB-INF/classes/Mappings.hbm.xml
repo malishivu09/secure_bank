@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 7, 2014 4:37:00 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.asu.edu.daos.Mappings" table="mappings">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userByInternalUsername" class="com.asu.edu.daos.User" fetch="select">
+            <column name="internalUsername" length="500" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userByExternalUsername" class="com.asu.edu.daos.User" fetch="select">
+            <column name="externalUsername" length="500" not-null="true" />
+        </many-to-one>
+        <property name="accessType" type="string">
+            <column name="accessType" length="500" not-null="true" />
+        </property>
+        <property name="status" type="boolean">
+            <column name="status" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

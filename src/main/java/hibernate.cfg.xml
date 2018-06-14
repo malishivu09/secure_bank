@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- <property name="hibernate.bytecode.use_reflection_optimizer">false</property> -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.default_schema">securebanking</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!-- <property name="hibernate.search.autoregister_listeners">false</property> -->
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="show_sql">true</property>
+        <mapping resource="com/asu/edu/models/Account.hbm.xml" />
+        <mapping resource="com/asu/edu/models/Otp.hbm.xml" />
+        <mapping resource="com/asu/edu/models/User.hbm.xml" />
+        <mapping resource="com/asu/edu/models/Mappings.hbm.xml" />
+        <mapping resource="com/asu/edu/models/Transactions.hbm.xml" />
+        <mapping resource="com/asu/edu/models/Roles.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

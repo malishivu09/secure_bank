@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 31, 2014 3:28:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.asu.edu.daos.Account" table="account" catalog="securebanking">
+        <id name="accountNumber" type="string">
+            <column name="accountNumber" length="500" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="user" class="com.asu.edu.daos.User" fetch="select">
+            <column name="username" length="500" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="isBlocked" type="boolean">
+            <column name="isBlocked" not-null="true" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments" length="1000" />
+        </property>
+        <property name="creationTime" type="timestamp">
+            <column name="creationTime" length="19" not-null="true" />
+        </property>
+        <property name="accountType" type="string">
+            <column name="accountType" length="500" not-null="true" />
+        </property>
+        <property name="balance" type="double">
+            <column name="balance" precision="22" scale="0" not-null="true" />
+        </property>
+        <set name="transactionsesForAccountSource" table="transactions" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="accountSource" length="500" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.asu.edu.daos.Transactions" />
+        </set>
+        <set name="transactionsesForAccountTarget" table="transactions" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="accountTarget" length="500" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.asu.edu.daos.Transactions" />
+        </set>
+    </class>
+</hibernate-mapping>

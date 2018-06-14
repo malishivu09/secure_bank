@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 7, 2014 3:07:07 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.asu.edu.daos.Otp" table="otp">
+        <composite-id name="id" class="com.asu.edu.daos.OtpId">
+            <key-property name="username" type="string">
+                <column name="username" length="500" />
+            </key-property>
+            <key-property name="otp" type="int">
+                <column name="otp" />
+            </key-property>
+            <key-property name="creationTime" type="timestamp">
+                <column name="creationTime" length="19" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="user" class="com.asu.edu.daos.User" update="false" insert="false" fetch="select">
+            <column name="username" length="500" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

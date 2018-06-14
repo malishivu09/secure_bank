@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 6, 2014 11:54:44 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.asu.edu.daos.Otp" table="otp">
+        <id name="username" type="string">
+            <column name="username" length="500" />
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+        <one-to-one name="user" class="com.asu.edu.daos.User" constrained="true"></one-to-one>
+        <property name="otp" type="int">
+            <column name="otp" not-null="true" />
+        </property>
+        <property name="creationTime" type="timestamp">
+            <column name="creationTime" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

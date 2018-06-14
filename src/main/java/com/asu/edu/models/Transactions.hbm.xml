@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 31, 2014 3:28:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.asu.edu.daos.Transactions" table="transactions" catalog="securebanking">
+        <id name="transactionId" type="string">
+            <column name="transactionID" length="500" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="accountByAccountTarget" class="com.asu.edu.daos.Account" fetch="select">
+            <column name="accountTarget" length="500" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="accountByAccountSource" class="com.asu.edu.daos.Account" fetch="select">
+            <column name="accountSource" length="500" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="transactionAmount" type="double">
+            <column name="transactionAmount" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="transactionType" type="string">
+            <column name="transactionType" length="500" not-null="true" />
+        </property>
+        <property name="transactionStatus" type="string">
+            <column name="transactionStatus" length="500" not-null="true" />
+        </property>
+        <property name="isCritical" type="boolean">
+            <column name="isCritical" not-null="true" />
+        </property>
+        <property name="transactionTime" type="timestamp">
+            <column name="transactionTime" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

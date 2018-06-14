@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 31, 2014 3:28:39 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.asu.edu.daos.User" table="user" catalog="securebanking">
+        <id name="username" type="string">
+            <column name="username" length="500" />
+            <generator class="assigned" />
+        </id>
+        <property name="email" type="string">
+            <column name="email" length="500" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="500" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="500" not-null="true" />
+        </property>
+        <property name="phoneNumber" type="string">
+            <column name="phoneNumber" length="500" not-null="true" />
+        </property>
+        <property name="enabled" type="boolean">
+            <column name="enabled" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="500" not-null="true" />
+        </property>
+        <property name="pii" type="int">
+            <column name="pii" not-null="true" />
+        </property>
+        <property name="publicKey" type="string">
+            <column name="publicKey" length="500" not-null="true" />
+        </property>
+        <set name="mappingsesForExternalUsername" table="mappings" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="externalUsername" length="500" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.asu.edu.daos.Mappings" />
+        </set>
+        <set name="accounts" table="account" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="username" length="500" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.asu.edu.daos.Account" />
+        </set>
+        <set name="mappingsesForInternalUsername" table="mappings" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="internalUsername" length="500" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.asu.edu.daos.Mappings" />
+        </set>
+        <set name="otps" table="otp" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="username" length="500" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="com.asu.edu.daos.Otp" />
+        </set>
+    </class>
+</hibernate-mapping>
